@@ -20,6 +20,7 @@ The supplied course map totals 166 credits across Semesters 1-8. This is the wor
 The proposal identifies 39 credits of courses for material assessment or practical-outcome redesign. Against the 166-credit working baseline, this is 23.5%, within the assignment’s 20-25% target. The proposal does not add graduation credits: changes are embedded in existing courses and the existing Special Project, subject to syllabus review and academic approval.
 
 | Key decision | Recommendation |
+| --- | --- |
 | Preserve foundations | Keep programming, mathematics, data structures, algorithms, databases, systems and core AI/ML subjects. |
 | Make practice observable | Require tested, version-controlled, documented work with evaluation evidence. |
 | Integrate AI systems work | Connect data preparation, model evaluation, APIs, cloud, security and human review through existing courses and SP301. |
