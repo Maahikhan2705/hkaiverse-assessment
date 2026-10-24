@@ -55,15 +55,41 @@ Consider AI-assisted resume/JD compatibility feedback as an advisory student-pre
 
 The following process reflects the workflow described for this project.
 
+| Stage | Actor | Activity | Expected result |
+| --- | --- | --- | --- |
+| 1. Create opportunity | Placement cell | Uploads the opportunity announcement, deadline, registration link, eligibility criteria and other relevant details. | An opportunity record is created or updated. |
+| 2. Notify students | PlacementHub | Makes a notification available to students for the opportunity. | Students are alerted to review the listing; issuance does not prove the notification was read. |
+| 3. Review details | Student | Opens the opportunity and checks role information, deadline and eligibility criteria. | Student can decide whether to proceed. |
+| 4. Select Apply | Student / PlacementHub | Apply redirects to the configured Google Form or company application page. | The external destination opens, subject to link availability. |
+| 5. Record activity | PlacementHub / student | Apply-click activity may be recorded; completion is determined from whatever evidence is available. | Activity metrics use accurate, defined labels. |
+| 6. Review statistics | Faculty | Views available statistics such as Apply clicks, application counts and eligibility-related figures. | Faculty gains visibility into opportunity activity, within the limits of available data. |
+| 7. AI enhancement (proposed) | Student / AI feature | Compares resume content with a selected job description and offers compatibility feedback. | Student receives preparation guidance, not an employer decision. |
+
 ## 3.1 End-to-end flow
 
 The external application destination is a key workflow boundary. PlacementHub can record an Apply click when that event is tracked, but an external page opening alone does not prove that a student completed and submitted the application.
 
 # 4. Roles, Responsibilities and Data Boundaries
+| Role | Primary responsibility | Boundary / control to validate |
+| --- | --- | --- |
+| Placement cell | Create and maintain opportunity details, including deadlines, links and eligibility criteria. | Opportunity information should be complete and current before publication; the responsible editor should be clear. |
+| Student | Review the opportunity, assess eligibility and select Apply when ready. | The student completes the application on the external destination and follows the employer’s instructions. |
+| PlacementHub | Display listings, make notifications available, redirect Apply actions and present supported activity statistics. | Statistics should describe only what the system captures or can reliably confirm. |
+| Faculty | Review placement activity and eligibility-related statistics. | Access should be limited to information required for the faculty role. |
+| AI resume/JD feature (proposed) | Compare resume evidence with job requirements and provide preparation suggestions. | Advisory only; it should not make hiring decisions or claim to reproduce a proprietary ATS. |
 
 # 5. Status Definitions and Reporting Logic
 
 Clear labels help faculty interpret statistics correctly. A status should describe the event actually observed rather than imply a stronger level of confirmation.
+| Metric / status | Meaning | Reporting rule |
+| --- | --- | --- |
+| Opportunity published | Opportunity information is available to students. | Use for a listing that is available to students. |
+| Notification issued | The system initiated or made a notification available. | Do not describe it as read unless that can be observed. |
+| Apply clicked | A student selected Apply or the tracked event was recorded. | Measures an action, not a completed application. |
+| External page opened | The configured Google Form or company page opened. | Does not prove that the form was submitted. |
+| Application reported | Completion is reported through an available source or student confirmation. | Label the source; do not imply independent verification. |
+| Application verified | Reliable confirmation or an authorized integration supports submission. | Use only when supporting evidence exists. |
+| Eligibility count | Students identified as meeting listed criteria based on available data and stated rules. | Explain the criteria, data source and limitations. |
 
 ## 5.1 Interpreting faculty statistics
 
@@ -107,11 +133,27 @@ Implementation status: this feature is presented as a proposed enhancement for e
 
 The workflow map is based on the project information provided. The candidate has indicated that student conversations and note-taking informed their understanding of the process. To keep the report evidence-based, no participant counts, direct quotations, formal survey results or measured outcomes are asserted without records supporting them.
 
+| Evidence area | What to record | Why it matters |
+| --- | --- | --- |
+| Student discovery | Summarize the actual themes in the candidate’s notes; include counts or quotations only if recorded and appropriate to share. | Makes the user-discovery basis visible without overstating the method. |
+| Prototype review | Record which functions were personally checked: opportunity listing, notification behaviour, Apply redirection and available statistics. | Keeps implementation claims aligned with observed behaviour. |
+| Workflow tests | Run the synthetic scenarios and record the date, environment, actual result and any defect. | Shows what has and has not been validated. |
+| Metric definitions | Confirm how clicks, reported applications, verified applications and eligibility figures are counted. | Prevents misleading faculty statistics. |
+| Impact baseline | If access and permission allow, measure a baseline and compare it with a pilot using the same definitions. | Supports credible impact estimates. |
+
 Where additional discovery notes or test results are available, they can be incorporated to strengthen the evidence base.
 
 # 8. Five Synthetic Acceptance Tests
 
 The following acceptance tests provide a practical validation plan. They can be run with fictional opportunity details and synthetic student accounts.
+
+| Test | Scenario | Expected behaviour to validate | Evidence to capture |
+| --- | --- | --- | --- |
+| TC-01: Normal flow | Placement cell creates a complete fictional listing with deadline, registration link and eligibility criteria. | Listing becomes available as intended; notification behaviour is observed; selecting Apply opens the correct external destination. | Listing state, notification result, click event and destination. |
+| TC-02: Missing information | A listing is submitted without a required deadline or registration link. | If required-field validation exists or is implemented, missing information is flagged and the listing is not treated as complete until corrected. | Missing field, observed response and correction path. |
+| TC-03: Duplicate opportunity | Two similar fictional listings are entered for the same role and deadline. | If duplicate detection is implemented, a possible duplicate is flagged for review; records are not silently merged or deleted. | Records, warning/review behaviour and final decision. |
+| TC-04: Unauthorized publication/edit | A test account without the relevant authority attempts to publish or change a listing. | Role-based permission controls should block the action if implemented; unauthorized changes must not be accepted. | Account role, attempted action, result and any defect. |
+| TC-05: External application/status uncertainty | A student clicks Apply and opens an external page, but no submission confirmation returns to PlacementHub. | The click is recorded as a click; the application is not labelled verified solely because the page opened. | Click event and status shown in faculty statistics. |
 
 ## 8.1 Additional proposed AI checks
 
@@ -129,13 +171,52 @@ For each test run, record the date, environment/version, synthetic data used, st
 
 This illustrative model demonstrates one way to estimate staff-effort impact. Its assumptions can be replaced with baseline and pilot measurements when those data become available.
 
+| Input | Illustrative assumption |
+| --- | --- |
+| Placement-related requests per month | 20 |
+| Current routine handling effort | 25 minutes per request |
+| Current rework | 20% of requests × 15 additional minutes |
+| Proposed routine effort | 12 minutes per request |
+| Human review in proposed process | 5 minutes per request |
+| Proposed exception handling | 10% of requests × 10 additional minutes |
+| Ongoing support | 60 minutes per month |
+| One-time implementation effort | 8 hours |
+
+| Measure | Calculation | Illustrative result |
+| --- | --- | --- |
+| Current routine effort | 20 × 25 | 500 min/month |
+| Current rework | 20 × 20% × 15 | 60 min/month |
+| Current total | 500 + 60 | 560 min/month (9.33 hours) |
+| Proposed routine + review | 20 × (12 + 5) | 340 min/month |
+| Proposed exception handling | 20 × 10% × 10 | 20 min/month |
+| Proposed total incl. support | 340 + 20 + 60 | 420 min/month (7 hours) |
+| Illustrative net time difference | 560 − 420 | 140 min/month (2.33 hours) |
+
 Under these assumptions, the illustrative difference is 140 minutes per month. The result is highly sensitive to request volume, handling time, exceptions and ongoing support. No payback-period claim is included because the implementation effort and savings are not measured; a real payback calculation should be made only after validating these inputs.
 
 ## 9.1 Sensitivity to request volume
 
+| Requests/month | Current effort | Proposed effort | Difference |
+| --- | --- | --- | --- |
+| 10 | 280 min | 240 min | 40 min (0.67 h) |
+| 20 | 560 min | 420 min | 140 min (2.33 h) |
+| 40 | 1,120 min | 780 min | 340 min (5.67 h) |
+
 These scenarios use the assumptions above to show how request volume can affect the estimated time difference. A pilot can refine the estimate using observed review, exception and support effort.
 
 # 10. Risks and Practical Controls
+
+| Risk | Practical control / validation |
+| --- | --- |
+| Outdated deadline or eligibility details | Keep opportunity details consistent and current; make the responsible editor clear and review material changes. |
+| Notification not noticed or delivered | Use accurate notification wording and a visible opportunity listing; do not treat issuance as proof it was read. |
+| Apply click mistaken for completed application | Report Apply clicks separately from reported and verified applications. |
+| Incorrect eligibility statistics | State the eligibility criteria and data source; distinguish an estimate from a verified count. |
+| Unauthorized listing change | Limit publication/editing privileges to appropriate roles and test permission behaviour. |
+| Resume privacy or exposure | Make resume upload voluntary, restrict access, explain its purpose and apply reasonable retention limits. |
+| Misleading AI score | Show evidence and gaps, label the score advisory and do not use it as an automated hiring decision. |
+| System or external-link failure | Where supported, show a clear failure state and a practical way to retry or revisit the opportunity. |
+| Illustrative estimates mistaken for results | Label assumptions and use measured baseline/pilot data before making claims. |
 
 # 11. Recommended Implementation and Evaluation Plan
 
