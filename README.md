@@ -78,8 +78,8 @@ Repository URL: https://github.com/Maahikhan2705/hkaiverse-assessment
 
 
 
-Release URL: https://github.com/Maahikhan2705/hkaiverse-assessment/releases/tag/v1.0.0
+Release URL: https://github.com/Maahikhan2705/hkaiverse-assessment/releases/tag/v1.0
 
 
 
-Full commit URL: https://github.com/Maahikhan2705/hkaiverse-assessment/commit/90d089d09ef351d371082c661996ab380d7d6f9d
+Full commit URL: (https://github.com/Maahikhan2705/hkaiverse-assessment/commit/0b39d8e8cc99dda4bdd03daa39b7d292fcf5cf4b)
