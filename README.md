@@ -70,13 +70,6 @@ or plans that have not been executed.
 -   Any external links, role listings, and institutional references
     should be checked for current availability before relying on them.
 
-## Release and Submission Details
-
--   **Repository URL:** Add the URL of this GitHub repository.
--   **Release URL:** Add the URL of the named GitHub release.
--   **Full commit URL:** Add the URL of the final commit used for
-    submission.
-
 Both tasks are included in this repository for assessment review.
 
 ## Submission and Review
